@@ -1,0 +1,14 @@
+/Users/yunuspektas/Desktop/IhaleOtomasyon/Project.Core/bin/Debug/net8.0/Project.Core.deps.json
+/Users/yunuspektas/Desktop/IhaleOtomasyon/Project.Core/bin/Debug/net8.0/Project.Core.runtimeconfig.json
+/Users/yunuspektas/Desktop/IhaleOtomasyon/Project.Core/bin/Debug/net8.0/Project.Core.dll
+/Users/yunuspektas/Desktop/IhaleOtomasyon/Project.Core/bin/Debug/net8.0/Project.Core.pdb
+/Users/yunuspektas/Desktop/IhaleOtomasyon/Project.Core/obj/Debug/net8.0/Project.Core.csproj.AssemblyReference.cache
+/Users/yunuspektas/Desktop/IhaleOtomasyon/Project.Core/obj/Debug/net8.0/Project.Core.GeneratedMSBuildEditorConfig.editorconfig
+/Users/yunuspektas/Desktop/IhaleOtomasyon/Project.Core/obj/Debug/net8.0/Project.Core.AssemblyInfoInputs.cache
+/Users/yunuspektas/Desktop/IhaleOtomasyon/Project.Core/obj/Debug/net8.0/Project.Core.AssemblyInfo.cs
+/Users/yunuspektas/Desktop/IhaleOtomasyon/Project.Core/obj/Debug/net8.0/Project.Core.csproj.CoreCompileInputs.cache
+/Users/yunuspektas/Desktop/IhaleOtomasyon/Project.Core/obj/Debug/net8.0/Project.Core.dll
+/Users/yunuspektas/Desktop/IhaleOtomasyon/Project.Core/obj/Debug/net8.0/refint/Project.Core.dll
+/Users/yunuspektas/Desktop/IhaleOtomasyon/Project.Core/obj/Debug/net8.0/Project.Core.pdb
+/Users/yunuspektas/Desktop/IhaleOtomasyon/Project.Core/obj/Debug/net8.0/Project.Core.genruntimeconfig.cache
+/Users/yunuspektas/Desktop/IhaleOtomasyon/Project.Core/obj/Debug/net8.0/ref/Project.Core.dll
