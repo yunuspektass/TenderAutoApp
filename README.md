@@ -82,7 +82,7 @@ The project follows a layered architecture, which includes the following layers:
 
 1. Clone the Repository:
     ```bash
-    git clone <repository_url>
+    git clone https://github.com/yunuspektass/TenderAutoApp
     ```
 
 2. Navigate to the Project Directory:
