@@ -85,18 +85,18 @@ public class UserAuthenticationManager : IUserAuthenticationService
 
         var createdUser = await _userService.PostItem(userCreateDto);
 
-        foreach (var roleId in userCreateDto.RoleIds)
-        {
-            var userRole = new UserRole
-            {
-                UserId = createdUser.Id,
-                RoleId = roleId,
-                CreatedBy = "system",
-                UpdatedBy = "system",
-                Deleted = false
-            };
-            await _userRepository.AddUserRole(userRole);
-        } 
+        // foreach (var roleId in userCreateDto.RoleIds)
+        // {
+        //     var userRole = new UserRole
+        //     {
+        //         UserId = createdUser.Id,
+        //         RoleId = roleId,
+        //         CreatedBy = "system",
+        //         UpdatedBy = "system",
+        //         Deleted = false
+        //     };
+        //     await _userRepository.AddUserRole(userRole);
+        // } 
     }
 }
         
