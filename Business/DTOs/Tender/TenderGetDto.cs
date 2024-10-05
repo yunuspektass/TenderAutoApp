@@ -13,11 +13,12 @@ public class TenderGetDto
     public string TenderType { get; set; }
     public string Description { get; set; }
     public decimal Budget { get; set; }
+    public bool IsFinished { get; set; }
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
     public string Status { get; set; }
     public UnitGetDto Unit { get; set; }
-
+    public int? WinnerCompanyId { get; set; }
 
 
 

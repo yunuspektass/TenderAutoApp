@@ -26,3 +26,4 @@
 /Users/yunuspektas/Desktop/TenderAutoApp/Core/obj/Debug/net8.0/Core.pdb
 /Users/yunuspektas/Desktop/TenderAutoApp/Core/obj/Debug/net8.0/Core.genruntimeconfig.cache
 /Users/yunuspektas/Desktop/TenderAutoApp/Core/obj/Debug/net8.0/ref/Core.dll
+/Users/yunuspektas/Desktop/TenderAutoApp/Core/obj/Debug/net8.0/Core.sourcelink.json

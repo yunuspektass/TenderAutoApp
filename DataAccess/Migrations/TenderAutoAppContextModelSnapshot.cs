@@ -156,6 +156,9 @@ namespace DataAccess.Migrations
                     b.Property<string>("DeletedBy")
                         .HasColumnType("text");
 
+                    b.Property<bool>("IsRead")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("Message")
                         .IsRequired()
                         .HasMaxLength(500)
@@ -387,6 +390,9 @@ namespace DataAccess.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<bool>("IsFinished")
+                        .HasColumnType("boolean");
+
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("timestamp with time zone");
 
@@ -406,9 +412,14 @@ namespace DataAccess.Migrations
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("text");
 
+                    b.Property<int?>("WinnerCompanyId")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
                     b.HasIndex("UnitId");
+
+                    b.HasIndex("WinnerCompanyId");
 
                     b.ToTable("Tenders");
                 });
@@ -798,7 +809,13 @@ namespace DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Domain.Models.Company", "WinnerCompany")
+                        .WithMany()
+                        .HasForeignKey("WinnerCompanyId");
+
                     b.Navigation("Unit");
+
+                    b.Navigation("WinnerCompany");
                 });
 
             modelBuilder.Entity("Domain.Models.TenderProduct", b =>

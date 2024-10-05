@@ -20,7 +20,7 @@ public class OfferController:ControllerBase
     {
         var offersDto = await _offerService.GetList();
 
-        return Ok();
+        return Ok(offersDto);
     }
 
     [HttpGet("{id:int}")]
@@ -74,5 +74,5 @@ public class OfferController:ControllerBase
 
         return NoContent();
     }
-    
+
 }

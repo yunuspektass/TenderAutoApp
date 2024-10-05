@@ -69,6 +69,13 @@ public class TenderManager:ITenderService
 
     public async Task<TenderCreateDto> PostItem(TenderCreateDto tenderCreateDto)
     {
+        tenderCreateDto.IsFinished = false;
+
+        if (tenderCreateDto.WinnerCompanyId == 0)
+        {
+            tenderCreateDto.WinnerCompanyId = null;
+        }
+
         var tender = _mapper.Map<Tender>(tenderCreateDto);
         await _tenderRepository.Add(tender);
 
@@ -100,7 +107,10 @@ public class TenderManager:ITenderService
                 var tenderProduct = new TenderProduct
                 {
                     TenderId = tender.Id,
-                    ProductId = productId
+                    ProductId = productId,
+                    Quantity = tenderCreateDto.Quantity,
+                    UnitPrice = tenderCreateDto.UnitPrice,
+                    TotalPrice = tenderCreateDto.TotalPrice,
                 };
                 await _tenderProductRepository.Add(tenderProduct);
             }
@@ -141,6 +151,9 @@ public class TenderManager:ITenderService
                 {
                     TenderId = id,
                     ProductId = productId,
+                    Quantity = tenderUpdateDto.Quantity,
+                    UnitPrice = tenderUpdateDto.UnitPrice,
+                    TotalPrice = tenderUpdateDto.TotalPrice,
                     Deleted = false
                 };
                 await _tenderProductRepository.Add(newTenderProduct);

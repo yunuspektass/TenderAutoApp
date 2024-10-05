@@ -36,3 +36,4 @@
 /Users/yunuspektas/Desktop/TenderAutoApp/DataAccess/obj/Debug/net8.0/DataAccess.pdb
 /Users/yunuspektas/Desktop/TenderAutoApp/DataAccess/obj/Debug/net8.0/DataAccess.genruntimeconfig.cache
 /Users/yunuspektas/Desktop/TenderAutoApp/DataAccess/obj/Debug/net8.0/ref/DataAccess.dll
+/Users/yunuspektas/Desktop/TenderAutoApp/DataAccess/obj/Debug/net8.0/DataAccess.sourcelink.json

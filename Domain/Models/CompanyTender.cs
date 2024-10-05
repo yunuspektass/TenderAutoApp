@@ -6,7 +6,7 @@ namespace Domain.Models;
 
 public class CompanyTender : BaseEntity
 {
-    [Required]   
+    [Required]
     [ForeignKey("Company")]
     public int CompanyId { get; set; }
 
@@ -20,6 +20,6 @@ public class CompanyTender : BaseEntity
 
     public virtual Company Company { get; set; }
 
-    
+
     public virtual Tender Tender { get; set; }
 }

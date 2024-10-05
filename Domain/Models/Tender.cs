@@ -17,6 +17,8 @@ public class Tender  : BaseEntity
     [Required]
     public DateTime StartDate { get; set; }
 
+    public bool IsFinished { get; set; } = false;
+
     [Required]
     public DateTime EndDate { get; set; }
 
@@ -24,15 +26,21 @@ public class Tender  : BaseEntity
     [ForeignKey("Unit")]
     public int UnitId { get; set; }
 
+
+
     [MaxLength(50)]
     public TenderTypes TenderType { get; set; }
 
     [Required]
     public decimal Budget { get; set; }
 
+    [ForeignKey("WinnerCompany")]
+    public int? WinnerCompanyId { get; set; }
 
 
     public virtual Unit Unit { get; set; }
+
+    public virtual Company WinnerCompany { get; set; }
 
 
     public virtual ICollection<UserTender> UserTenders { get; set; }

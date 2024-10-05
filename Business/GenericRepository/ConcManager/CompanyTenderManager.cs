@@ -19,8 +19,8 @@ public class CompanyTenderManager:ICompanyTenderService
         _mapper = mapper;
         _mailService = mailService;
     }
-    
-    
+
+
     public async Task<IEnumerable<CompanyTenderGetDto>> GetList()
     {
         var companiesTender = await _companyTenderRepository.GetItems();
@@ -50,6 +50,7 @@ public class CompanyTenderManager:ICompanyTenderService
     public async Task<bool> PutItem(int id, CompanyTenderUpdateDto companyTenderUpdateDto)
     {
         var existingCompanyTender = await _companyTenderRepository.GetItem(id);
+        
 
         if (existingCompanyTender == null)
         {

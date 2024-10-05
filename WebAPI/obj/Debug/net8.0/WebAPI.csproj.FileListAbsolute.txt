@@ -390,3 +390,4 @@
 /Users/yunuspektas/Desktop/TenderAutoApp/WebAPI/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerGen.dll
 /Users/yunuspektas/Desktop/TenderAutoApp/WebAPI/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerUI.dll
 /Users/yunuspektas/Desktop/TenderAutoApp/WebAPI/bin/Debug/net8.0/BCrypt.Net-Next.dll
+/Users/yunuspektas/Desktop/TenderAutoApp/WebAPI/obj/Debug/net8.0/WebAPI.sourcelink.json

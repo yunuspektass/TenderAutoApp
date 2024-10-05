@@ -142,7 +142,7 @@ public class UserAuthenticationManager : IUserAuthenticationService
       Address = userEntity.Address,
       Roles = userEntity.Roles?.Select(r => new RoleGetDto
       {
-        Id = r.Role?.Id ?? 0, // Role null olabilir, bu nedenle null kontrolü ekleyin
+        Id = r.Role?.Id ?? 0,
         RoleName = r.Role?.RoleName
       }).ToList()
     };

@@ -167,16 +167,11 @@ public class UserManager : IUserService
 
         await _userRepository.Update(existingUser);
 
-        var existingUserRoles = await _userRepository.GetUserRoles(id);
+
+        await _userRepository.RemoveRolesByUserId(id);
 
         foreach (var roleId in userUpdateDto.RoleIds)
         {
-            if (existingUserRoles.Any(ur => ur.RoleId == roleId))
-            {
-                continue;
-            }
-
-
             var userRole = new UserRole
             {
                 UserId = userUpdateDto.Id,

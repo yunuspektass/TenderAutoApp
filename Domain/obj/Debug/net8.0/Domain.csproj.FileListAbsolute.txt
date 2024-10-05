@@ -32,3 +32,4 @@
 /Users/yunuspektas/Desktop/TenderAutoApp/Domain/obj/Debug/net8.0/Domain.pdb
 /Users/yunuspektas/Desktop/TenderAutoApp/Domain/obj/Debug/net8.0/Domain.genruntimeconfig.cache
 /Users/yunuspektas/Desktop/TenderAutoApp/Domain/obj/Debug/net8.0/ref/Domain.dll
+/Users/yunuspektas/Desktop/TenderAutoApp/Domain/obj/Debug/net8.0/Domain.sourcelink.json
