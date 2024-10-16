@@ -26,9 +26,10 @@ public class RoleRepository: BaseRepository<Role>
         return await _db.Roles.Include(u => u.RolePermissions)
             .Include(u => u.UserRoles).SingleOrDefaultAsync(r => r.Id == id);
     }
-    
+
     public async Task<Role?> GetByIdAsync(int roleId)
     {
         return await _db.Set<Role>().FindAsync(roleId);
     }
+
 }
