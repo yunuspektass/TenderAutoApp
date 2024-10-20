@@ -7,8 +7,8 @@ services:
     repo: yunuspektass/TenderAutoApp
     branch: main
     deploy_on_push: true
-  source_dir: WebAPI
-  dockerfile_path: Dockerfile
+  source_dir: .
+  dockerfile_path: WebAPI/Dockerfile
   http_port: 8080
   instance_count: 2
   instance_size_slug: basic-xs
