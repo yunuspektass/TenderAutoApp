@@ -15,11 +15,11 @@ COPY ["../Core/Core.csproj", "Core/"]
 
 RUN dotnet restore "WebAPI/WebAPI.csproj"
 
-COPY . .
-COPY ../Business ../Business
-COPY ../DataAccess ../DataAccess
-COPY ../Domain ../Domain
-COPY ../Core ../Core
+COPY . WebAPI/
+COPY ../Business ./Business
+COPY ../DataAccess ./DataAccess
+COPY ../Domain ./Domain
+COPY ../Core ./Core
 
 WORKDIR "/src/WebAPI"
 RUN dotnet build "WebAPI.csproj" -c $BUILD_CONFIGURATION -o /app/build
