@@ -15,10 +15,13 @@
      envs:
        - key: ASPNETCORE_ENVIRONMENT
          scope: RUN_AND_BUILD_TIME
-         value: Production
-       - key: ConnectionStrings__DefaultConnection
+         value: ${ASPNETCORE_ENVIRONMENT}
+       - key: DATABASE_CONNECTION_STRING
          scope: RUN_TIME
-         value: ${db.DATABASE_URL}
+         value: ${DATABASE_CONNECTION_STRING}
+       - key: JWT_KEY
+         scope: RUN_TIME
+         value: ${JWT_KEY}
      routes:
        - path: /api
          preserve_path_prefix: true
