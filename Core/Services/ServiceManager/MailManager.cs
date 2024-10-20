@@ -17,10 +17,10 @@ public class MailManager : IMailService
 
     public Task SendEmailAsync(string email, string subject, string message)
     {
-        /*var client = new SmtpClient(_mailSettings.Host, _mailSettings.Port)
+        var client = new SmtpClient(_mailSettings.Host, _mailSettings.Port)
         {
-         EnableSsl = true,
-         Credentials = new NetworkCredential(_mailSettings.UserName , _mailSettings.Password)
+            EnableSsl = _mailSettings.EnableSsl,
+            Credentials = new NetworkCredential(_mailSettings.UserName, _mailSettings.Password)
         };
         var mailMessage = new MailMessage
         {
@@ -32,7 +32,6 @@ public class MailManager : IMailService
 
         mailMessage.To.Add(new MailAddress(_mailSettings.SenderEmail));
 
-        return client.SendMailAsync(mailMessage);*/
-        return Task.CompletedTask;
+        return client.SendMailAsync(mailMessage);
     }
 }
