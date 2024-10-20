@@ -17,7 +17,7 @@ public class MailManager : IMailService
 
     public Task SendEmailAsync(string email, string subject, string message)
     {
-        var client = new SmtpClient(_mailSettings.Host, _mailSettings.Port)
+        /*var client = new SmtpClient(_mailSettings.Host, _mailSettings.Port)
         {
             EnableSsl = _mailSettings.EnableSsl,
             Credentials = new NetworkCredential(_mailSettings.UserName, _mailSettings.Password)
@@ -32,6 +32,8 @@ public class MailManager : IMailService
 
         mailMessage.To.Add(new MailAddress(_mailSettings.SenderEmail));
 
-        return client.SendMailAsync(mailMessage);
+        return client.SendMailAsync(mailMessage);*/
+        return Task.CompletedTask;
+
     }
 }
