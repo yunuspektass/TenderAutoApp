@@ -11,16 +11,17 @@
      dockerfile_path: WebAPI/Dockerfile
      http_port: 8080
      instance_count: 2
-     instance_size_slug: basic-xxs
+     instance_size_slug: basic-xs
      envs:
        - key: ASPNETCORE_ENVIRONMENT
+         scope: RUN_AND_BUILD_TIME
          value: Production
        - key: ConnectionStrings__DefaultConnection
+         scope: RUN_TIME
          value: ${db.DATABASE_URL}
-     health_check:
-       http_path: /health
      routes:
        - path: /api
+         preserve_path_prefix: true
 
    databases:
    - engine: PG
