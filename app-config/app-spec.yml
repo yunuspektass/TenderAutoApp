@@ -8,21 +8,23 @@
        branch: main
        deploy_on_push: true
      source_dir: WebAPI
-     dockerfile_path: Dockerfile
+     dockerfile_path: WebAPI/Dockerfile
      http_port: 8080
      instance_count: 2
-     instance_size_slug: apps-s-1vcpu-1gb
-     run_command: dotnet WebAPI.dll
+     instance_size_slug: basic-xxs
+     envs:
+       - key: ASPNETCORE_ENVIRONMENT
+         value: Production
+       - key: ConnectionStrings__DefaultConnection
+         value: ${db.DATABASE_URL}
+     health_check:
+       http_path: /health
+     routes:
+       - path: /api
 
-   envs:
-   - key: DATABASE_CONNECTION_STRING
-     scope: RUN_AND_BUILD_TIME
-     type: SECRET
-     value: EV[1:Pf6koMitEouf9G83nRcVSjXWo04A4rsz:L909bBt2A3kDRzcKKLqtK4kI0Co9FgsXfHlCWFCNJIFo646F2080Xfrz96ucHhAAeYdu/2FOEZPcySC2Kb7ZLbipcnoY4a/o+/UCDTzh3Mzr+anXKC53fQKOH0Z4GfAXtEowr8cPg/yYErAeeXdFXf5m/7BfIre46j4BLWUZzIs3+JD+9HtxhtBTEkYiqnCJzrG67NmGJv/r]
-   - key: JWT_KEY
-     scope: RUN_AND_BUILD_TIME
-     type: SECRET
-     value: EV[1:jUTR6sB4LJVRuvi/qf1rGEasA+DjhS7K:3XURMqDmGzuUA3QNnWJu8lt3VVQrSRzjo0DceynbIrpNO2wcbQ3dDxaExi6C+rA0soSf8FvZaJIJ+o3g3Ac30i0vdBqlGX0HJJ+rEPvFRg==]
-   - key: ASPNETCORE_ENVIRONMENT
-     scope: RUN_AND_BUILD_TIME
-     value: Production
+   databases:
+   - engine: PG
+     name: db
+     num_nodes: 1
+     size: db-s-dev-database
+     version: "12"
