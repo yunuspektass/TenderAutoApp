@@ -12,15 +12,22 @@
      http_port: 8080
      instance_count: 2
      instance_size_slug: basic-xxs
+     run_command: dotnet WebAPI.dll
      envs:
        - key: ASPNETCORE_ENVIRONMENT
+         scope: RUN_AND_BUILD_TIME
          value: Production
-       - key: ConnectionStrings__DefaultConnection
-         value: ${db.DATABASE_URL}
+       - key: DATABASE_CONNECTION_STRING
+         scope: RUN_AND_BUILD_TIME
+         value: Host=tenderautoapp-db-do-user-18095479-0.f.db.ondigitalocean.com;Port=25060;Database=defaultdb;Username=doadmin;Password=AVNS_O7NiNCpS8zSKXr4eSdj;SSL Mode=Require;Trust Server Certificate=true
+       - key: JWT_KEY
+         scope: RUN_AND_BUILD_TIME
+         type: SECRET
+         value: EV[1:jUTR6sB4LJVRuvi/qf1rGEasA+DjhS7K:3XURMqDmGzuUA3QNnWJu8lt3VVQrSRzjo0DceynbIrpNO2wcbQ3dDxaExi6C+rA0soSf8FvZaJIJ+o3g3Ac30i0vdBqlGX0HJJ+rEPvFRg==]
      health_check:
        http_path: /health
      routes:
-       - path: /api
+       - path: /
 
    databases:
    - engine: PG
@@ -28,3 +35,7 @@
      num_nodes: 1
      size: db-s-dev-database
      version: "12"
+
+   alerts:
+   - rule: DEPLOYMENT_FAILED
+   - rule: DOMAIN_FAILED
