@@ -8,7 +8,7 @@
        branch: main
        deploy_on_push: true
      source_dir: WebAPI
-     dockerfile_path: Dockerfile
+     dockerfile_path: ./Dockerfile
      http_port: 8080
      instance_count: 2
      instance_size_slug: apps-s-1vcpu-1gb
