@@ -1,34 +1,33 @@
 name: goldfish-app
-region: fra
-
 services:
-- name: tenderautoapp-web-api
-  github:
-    repo: yunuspektass/TenderAutoApp
-    branch: main
-    deploy_on_push: true
-  dockerfile_path: WebAPI/Dockerfile
-  http_port: 8080
-  instance_count: 2
-  instance_size_slug: basic-xs
-  envs:
-    - key: ASPNETCORE_ENVIRONMENT
-      scope: RUN_AND_BUILD_TIME
-      value: Production
-    - key: DATABASE_CONNECTION_STRING
-      scope: RUN_TIME
-      value: ${db.DATABASE_URL}
-    - key: JWT_KEY
-      scope: RUN_TIME
-      type: SECRET
-      value: ${jwt_secret}
-  routes:
-    - path: /
-      preserve_path_prefix: true
+    - name: api
+      github:
+          repo: yunuspektass/TenderAutoApp
+          branch: main
+          deploy_on_push: true
+      dockerfile_path: Dockerfile
+      source_dir: .
+      http_port: 8080
+      instance_count: 1
+      instance_size_slug: basic-xs
+      envs:
+          - key: ASPNETCORE_ENVIRONMENT
+            scope: RUN_AND_BUILD_TIME
+            value: Production
+          - key: DATABASE_CONNECTION_STRING
+            scope: RUN_TIME
+            value: ${db.DATABASE_URL}
+          - key: JWT_KEY
+            scope: RUN_TIME
+            type: SECRET
+            value: ${jwt_secret}
+      routes:
+          - path: /
+            preserve_path_prefix: true
 
 databases:
-- engine: PG
-  name: db
-  num_nodes: 1
-  size: db-s-dev-database
-  version: "12"
+    - engine: PG
+      name: db
+      num_nodes: 1
+      size: db-s-dev-database
+      version: "14"
