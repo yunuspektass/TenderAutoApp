@@ -12,6 +12,7 @@ using Core.Services.ServiceClasses;
 using Core.Services.ServiceManager;
 using Core.Services.ServiceSettings;
 using DataAccess;
+using DataAccess.SeedData;
 using Domain.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -157,6 +158,22 @@ builder.Services.AddHttpContextAccessor();
 
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    try
+    {
+        var context = services.GetRequiredService<TenderAutoAppContext>();
+        context.Database.Migrate();
+        SeedData.Initialize(services);
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "Veritabanı migration veya seed işlemi sırasında bir hata oluştu.");
+    }
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

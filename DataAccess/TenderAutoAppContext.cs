@@ -20,6 +20,13 @@ public class TenderAutoAppContext : DbContext
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(TenderConfiguration).Assembly);
         modelBuilder.AddGlobalFilter();
 
+        modelBuilder.Entity<Role>().HasData(
+            new Role { Id = 1, RoleName = "Admin" },
+            new Role { Id = 2, RoleName = "CompanyUser" },
+            new Role { Id = 3, RoleName = "TenderResponsible" },
+            new Role { Id = 4, RoleName = "User" }
+        );
+
 
     }
 
