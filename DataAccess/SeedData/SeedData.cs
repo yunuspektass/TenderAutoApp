@@ -1,49 +1,44 @@
+using DataAccess;
 using Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Linq;
 
-namespace DataAccess.SeedData
+public static class SeedData
 {
-    public static class SeedData
+    public static async Task InitializeAsync(IServiceProvider serviceProvider)
     {
-        public static void Initialize(IServiceProvider serviceProvider)
+        using (var context = new TenderAutoAppContext(
+                   serviceProvider.GetRequiredService<DbContextOptions<TenderAutoAppContext>>()))
         {
-            using (var context = new TenderAutoAppContext(
-                       serviceProvider.GetRequiredService<DbContextOptions<TenderAutoAppContext>>()))
+            if (!await context.Roles.AnyAsync())
             {
+                await context.Roles.AddRangeAsync(
+                    new Role { Id = 1, RoleName = "Admin" },
+                    new Role { Id = 2, RoleName = "CompanyUser" },
+                    new Role { Id = 3, RoleName = "TenderResponsible" },
+                    new Role { Id = 4, RoleName = "User" }
+                );
+                await context.SaveChangesAsync();
+            }
 
-                if (!context.Roles.Any())
+            if (!await context.Users.AnyAsync(u => u.Email == "yunus@gmail.com"))
+            {
+                var adminUser = new User
                 {
-                    context.Roles.AddRange(
-                        new Role { Id = 1, RoleName = "Admin" },
-                        new Role { Id = 2, RoleName = "CompanyUser" },
-                        new Role { Id = 3, RoleName = "TenderResponsible" },
-                        new Role { Id = 4, RoleName = "User" }
-                    );
-                    context.SaveChanges();
-                }
+                    Name = "Yunus",
+                    LastName = "Pektaş",
+                    Email = "yunus@gmail.com",
+                    PhoneNumber = "5555555555",
+                    Address = "İstanbul"
+                };
 
-                if (!context.Users.Any(u => u.Email == "yunus@gmail.com"))
-                {
-                    var adminUser = new User
-                    {
-                        Name = "Yunus",
-                        LastName = "Pektaş",
-                        Email = "yunus@gmail.com",
-                        PhoneNumber = "5555555555",
-                        Address = "İstanbul"
-                    };
+                adminUser.Password = BCrypt.Net.BCrypt.HashPassword("yunus");
 
-                    adminUser.Password = BCrypt.Net.BCrypt.HashPassword("yunus");
+                await context.Users.AddAsync(adminUser);
+                await context.SaveChangesAsync();
 
-                    context.Users.Add(adminUser);
-                    context.SaveChanges();
-
-                    context.UserRoles.Add(new UserRole { UserId = adminUser.Id, RoleId = 1 });
-                    context.SaveChanges();
-                }
+                await context.UserRoles.AddAsync(new UserRole { UserId = adminUser.Id, RoleId = 1 });
+                await context.SaveChangesAsync();
             }
         }
     }

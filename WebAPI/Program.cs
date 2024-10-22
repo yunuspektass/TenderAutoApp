@@ -12,7 +12,6 @@ using Core.Services.ServiceClasses;
 using Core.Services.ServiceManager;
 using Core.Services.ServiceSettings;
 using DataAccess;
-using DataAccess.SeedData;
 using Domain.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -25,7 +24,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<TenderAutoAppContext>(options =>
 {
-    options.UseNpgsql(builder.Configuration.GetConnectionString("TenderAutoAppContext"));
+    var connectionString = builder.Configuration.GetConnectionString("TenderAutoAppContext");
+    options.UseNpgsql(connectionString);
 });
 
 var mapperConfiguration = new MapperConfiguration(mc =>
@@ -166,7 +166,7 @@ using (var scope = app.Services.CreateScope())
     {
         var context = services.GetRequiredService<TenderAutoAppContext>();
         context.Database.Migrate();
-        SeedData.Initialize(services);
+        await SeedData.InitializeAsync(services);
     }
     catch (Exception ex)
     {
