@@ -25,6 +25,11 @@ builder.Services.AddRazorPages();
 builder.Services.AddDbContext<TenderAutoAppContext>(options =>
 {
     var connectionString = builder.Configuration.GetConnectionString("TenderAutoAppContext");
+    connectionString = connectionString.Replace("tenderautoapp-db-do-user-18095479-0.f.db.ondigitalocean.com", Environment.GetEnvironmentVariable("DB_HOST") ?? "tenderautoapp-db-do-user-18095479-0.f.db.ondigitalocean.com");
+    connectionString = connectionString.Replace("25060", Environment.GetEnvironmentVariable("DB_PORT") ?? "25060");
+    connectionString = connectionString.Replace("defaultdb", Environment.GetEnvironmentVariable("DB_NAME") ?? "defaultdb");
+    connectionString = connectionString.Replace("doadmin", Environment.GetEnvironmentVariable("DB_USER") ?? "doadmin");
+    connectionString = connectionString.Replace("AVNS_O7NiNCpS8zSKXr4eSdj", Environment.GetEnvironmentVariable("DB_PASSWORD") ?? "AVNS_O7NiNCpS8zSKXr4eSdj");
     options.UseNpgsql(connectionString);
 });
 
@@ -180,10 +185,10 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+    // app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
