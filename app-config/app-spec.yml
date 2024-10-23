@@ -23,7 +23,6 @@ services:
             value: ${jwt_secret}
       routes:
           - path: /
-            preserve_path_prefix: true
 
 databases:
     - engine: PG
