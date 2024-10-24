@@ -25,11 +25,6 @@ builder.Services.AddRazorPages();
 builder.Services.AddDbContext<TenderAutoAppContext>(options =>
 {
     var connectionString = builder.Configuration.GetConnectionString("TenderAutoAppContext");
-    connectionString = connectionString.Replace("tenderautoapp-db-do-user-18095479-0.f.db.ondigitalocean.com", Environment.GetEnvironmentVariable("DB_HOST") ?? "tenderautoapp-db-do-user-18095479-0.f.db.ondigitalocean.com");
-    connectionString = connectionString.Replace("25060", Environment.GetEnvironmentVariable("DB_PORT") ?? "25060");
-    connectionString = connectionString.Replace("defaultdb", Environment.GetEnvironmentVariable("DB_NAME") ?? "defaultdb");
-    connectionString = connectionString.Replace("doadmin", Environment.GetEnvironmentVariable("DB_USER") ?? "doadmin");
-    connectionString = connectionString.Replace("AVNS_O7NiNCpS8zSKXr4eSdj", Environment.GetEnvironmentVariable("DB_PASSWORD") ?? "AVNS_O7NiNCpS8zSKXr4eSdj");
     options.UseNpgsql(connectionString);
 });
 
@@ -181,7 +176,19 @@ using (var scope = app.Services.CreateScope())
 }
 
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
+{
+    //NSwag'ı JSON endpoint olarak sunmak için middleware etkinleştirdik
+    app.UseOpenApi();
+
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "TenderAutoApp v1");
+        c.RoutePrefix = string.Empty; // Swagger'ı root'ta çalıştırmak için
+    });
+}
+else
 {
     app.UseExceptionHandler("/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
@@ -193,19 +200,13 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-//NSwag'ı JSON endpoint olarak sunmak için middleware etkinleştirdik
-app.UseOpenApi();
+
 
 //NSwag'ı UI'yi web de sunmak için middleware etkinleştirdik
 //NSwag JSON endpoint'ini belirt
 
 
-app.UseSwagger();
-app.UseSwaggerUI(c =>
-{
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "TenderAutoApp v1");
-    c.RoutePrefix = string.Empty; // Swagger'ı root'ta çalıştırmak için
-});
+
 
 
 app.UseCors("AllowAllOrigins");
